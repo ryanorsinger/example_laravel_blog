@@ -16,7 +16,17 @@ Route::get('/', function()
 	return View::make('hello');
 });
 
+/* Example GET route */
 Route::get('/sayhello', function()
 {
     return "Hello, Codeup!";
+});
+
+/*
+ * Curly brackets specify a dynamic route parameter.
+ * @var name is passed in from the URI to the route.
+ */
+Route::get('/sayhello/{name}', function($name)
+{
+    return "Hello, $name!";
 });
