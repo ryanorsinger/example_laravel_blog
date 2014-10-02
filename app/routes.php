@@ -32,12 +32,12 @@ Route::get('/sayhello/{name}', function($name)
 });
 
 
-Route::get('/portfolio'), function()
+Route::get('/portfolio', function()
 {
     return "This is my portfolio";
 });
 
-Route::get('/resume'), function()
+Route::get('/resume', function()
 {
     return "This is my resume";
 });
