@@ -24,13 +24,12 @@ Route::get('/sayhello', function()
 
 /*
  * Curly brackets specify a dynamic route parameter.
- * @var name is passed in from the URI to the route.
+ * @var name is passed in from the URI to the view.
  */
 Route::get('/sayhello/{name}', function($name)
 {
-    return "Hello, $name!";
+    return View::make('my-first-view');
 });
-
 
 Route::get('/portfolio', function()
 {
