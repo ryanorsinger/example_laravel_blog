@@ -43,7 +43,7 @@ Route::get('/resume', function()
 });
 
 /* Guess is an optional route parameter. If no guess is passed, it defualts to NULL */
-Route::get('/rolldice/{guess?}', function($guess = null)
+Route::get('/rolldice/{guess?}', function($guess = NULL)
 {
     /* Generate a random dice roll between 1 and 20 */
     $roll = rand(1,20);
