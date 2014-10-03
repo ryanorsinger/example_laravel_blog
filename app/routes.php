@@ -41,3 +41,15 @@ Route::get('/resume', function()
 {
     return "This is my resume";
 });
+
+Route::get('/rolldice', function()
+{
+    /* Generate a random dice roll between 1 and 20 */
+    $roll = rand(1,20);
+
+    /* Prepare the data to send to the view */
+    $data_sent_to_view = array('roll' => $roll);
+
+    /* Return the view */
+    return View::make('roll-dice')->with($data_sent_to_view);
+});
