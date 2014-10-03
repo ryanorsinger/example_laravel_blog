@@ -12,12 +12,6 @@
 */
 Route::get('/', 'HomeController@showWelcome');
 
-/* Example GET route */
-Route::get('/sayhello', function()
-{
-    return "Hello, Codeup!";
-});
-
 /*
  * Curly brackets specify a dynamic route parameter.
  * @var name is passed in from the URI to the view.
