@@ -10,11 +10,7 @@
 | and give it the Closure to execute when that URI is requested.
 |
 */
-
-Route::get('/', function()
-{
-	return View::make('hello');
-});
+Route::get('/', 'HomeController@showWelcome');
 
 /* Example GET route */
 Route::get('/sayhello', function()
@@ -34,31 +30,11 @@ Route::get('/sayhello/{name?}/', function($name = NULL)
 
 Route::get('/portfolio', function()
 {
+
     return "This is my portfolio";
 });
 
 Route::get('/resume', function()
 {
     return "This is my resume";
-});
-
-Route::get('/hellocodeup', function()
-{
-    return View::make('hello-codeup');
-});
-
-/* Guess is an optional route parameter. If no guess is passed, it defualts to NULL */
-Route::get('/rolldice/{guess?}', function($guess = NULL)
-{
-    /* Generate a random dice roll between 1 and 20 */
-    $roll = rand(1,20);
-
-    /* Prepare the data to send to the view */
-    $data_sent_to_view = array(
-        'roll' => $roll,
-        'guess' => $guess
-        );
-
-    /* Return the view */
-    return View::make('roll-dice')->with($data_sent_to_view);
 });
