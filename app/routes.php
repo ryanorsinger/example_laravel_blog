@@ -42,6 +42,11 @@ Route::get('/resume', function()
     return "This is my resume";
 });
 
+Route::get('/hellocodeup', function()
+{
+    return View::make('hello-codeup');
+});
+
 /* Guess is an optional route parameter. If no guess is passed, it defualts to NULL */
 Route::get('/rolldice/{guess?}', function($guess = NULL)
 {
