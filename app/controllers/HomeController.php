@@ -25,4 +25,14 @@ class HomeController extends BaseController {
 	    $data = array('name' => $name);
 	    return View::make('my-first-view')->with($data);
 	}
+
+	public function showResume()
+	{
+    	return "This is my resume";
+	}
+
+	public function showPortfolio()
+	{
+    	return "This is my portfolio";
+	}
 }

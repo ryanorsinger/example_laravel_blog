@@ -18,13 +18,6 @@ Route::get('/', 'HomeController@showWelcome');
  */
 Route::get('/sayhello/{name}', 'HomeController@sayHello');
 
-Route::get('/portfolio', function()
-{
+Route::get('/resume', 'HomeController@showResume');
 
-    return "This is my portfolio";
-});
-
-Route::get('/resume', function()
-{
-    return "This is my resume";
-});
+Route::get('/portfolio', 'HomeController@showPortfolio');
