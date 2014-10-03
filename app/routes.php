@@ -16,11 +16,7 @@ Route::get('/', 'HomeController@showWelcome');
  * Curly brackets specify a dynamic route parameter.
  * @var name is passed in from the URI to the view.
  */
-Route::get('/sayhello/{name?}/', function($name = NULL)
-{
-    $data = array('name' => $name);
-    return View::make('my-first-view')->with($data);
-});
+Route::get('/sayhello/{name}', 'HomeController@sayHello');
 
 Route::get('/portfolio', function()
 {
