@@ -28,7 +28,8 @@ Route::get('/sayhello', function()
  */
 Route::get('/sayhello/{name}', function($name)
 {
-    return View::make('my-first-view');
+    $data = array('name' => $name);
+    return View::make('my-first-view')->with($data);
 });
 
 Route::get('/portfolio', function()
