@@ -21,3 +21,5 @@ Route::get('/sayhello/{name}', 'HomeController@sayHello');
 Route::get('/resume', 'HomeController@showResume');
 
 Route::get('/portfolio', 'HomeController@showPortfolio');
+
+Route::get('/todo', 'HomeController@showTodo');
