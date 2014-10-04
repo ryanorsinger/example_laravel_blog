@@ -35,4 +35,9 @@ class HomeController extends BaseController {
 	{
     	return "This is my portfolio";
 	}
+
+	public function showTodo()
+	{
+		return View::make('todo');
+	}
 }
