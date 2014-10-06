@@ -17,7 +17,7 @@ class CreateTutorialsTable extends Migration {
             $table->increments('id');
             $table->integer('user_id')
                   ->unsigned();
-            $table->string('title', 100);
+            $table->string('title', 100)->unique();
             $table->text('body');
             $table->timestamps();
         });

@@ -15,8 +15,8 @@ class CreateCommentsTable extends Migration {
 		Schema::create('comments', function($table)
         {
             $table->increments('id');
-            $table->string('title', 100);
-            $table->text('body');
+            $table->text('comment');
+            $table->string('flagged');
             $table->timestamps();
         });
 	}

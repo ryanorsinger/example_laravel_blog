@@ -15,12 +15,9 @@ class CreateRolesTable extends Migration {
 		Schema::create('roles', function($table)
         {
             $table->increments('id');
-            $table->integer('user_id')
-                  ->unsigned();
-            $table->string('title', 100);
-            $table->text('body');
+            $table->enum('role', array('admin', 'contributor', 'guest'));
             $table->timestamps();
-        });		//
+        });
 	}
 
 	/**
