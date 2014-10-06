@@ -16,6 +16,7 @@ class CreateCommentsTable extends Migration {
         {
             $table->increments('id');
             $table->text('comment');
+            $table->enum('status', array('approved', 'pending', 'rejected'));
             $table->string('flagged');
             $table->timestamps();
         });
