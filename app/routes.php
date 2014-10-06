@@ -23,3 +23,13 @@ Route::get('/resume', array('uses' => 'HomeController@showResume', 'as' => 'resu
 Route::get('/portfolio', array('uses' => 'HomeController@showPortfolio', 'as' => 'portfolio'));
 
 Route::get('/todo', array('uses' => 'HomeController@showTodo', 'as' => 'todo'));
+
+Route::resource('posts', 'PostsController');
+
+Route::resource('tutorials', 'TutorialsController');
+
+Route::resource('users', 'UsersController');
+
+Route::resource('tags', 'TagsController');
+
+Route::resource('comments', 'CommentsController');
