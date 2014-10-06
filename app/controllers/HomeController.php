@@ -28,12 +28,12 @@ class HomeController extends BaseController {
 
 	public function showResume()
 	{
-    	return "This is my resume";
+    	return View::make('resume');
 	}
 
 	public function showPortfolio()
 	{
-    	return "This is my portfolio";
+    	return View::make('portfolio');
 	}
 
 	public function showTodo()

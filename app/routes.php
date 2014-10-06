@@ -10,7 +10,7 @@
 | and give it the Closure to execute when that URI is requested.
 |
 */
-Route::get('/', 'uses' => 'HomeController@showWelcome', 'as' => 'home');
+Route::get('/', array('uses' => 'HomeController@showWelcome', 'as' => 'home'));
 
 /*
  * Curly brackets specify a dynamic route parameter.
@@ -22,4 +22,4 @@ Route::get('/resume', array('uses' => 'HomeController@showResume', 'as' => 'resu
 
 Route::get('/portfolio', array('uses' => 'HomeController@showPortfolio', 'as' => 'portfolio'));
 
-Route::get('/todo', array('uses' => 'HomeController@showTodo', 'as' => 'todo');
+Route::get('/todo', array('uses' => 'HomeController@showTodo', 'as' => 'todo'));
