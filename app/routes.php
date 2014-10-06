@@ -10,16 +10,16 @@
 | and give it the Closure to execute when that URI is requested.
 |
 */
-Route::get('/', 'HomeController@showWelcome');
+Route::get('/', 'uses' => 'HomeController@showWelcome', 'as' => 'home');
 
 /*
  * Curly brackets specify a dynamic route parameter.
  * @var name is passed in from the URI to the view.
  */
-Route::get('/sayhello/{name}', 'HomeController@sayHello');
+Route::get('/sayhello/{name}', array('uses' => 'HomeController@sayHello', 'as' => 'sayhello');
 
-Route::get('/resume', 'HomeController@showResume');
+Route::get('/resume', array('uses' => 'HomeController@showResume', 'as' => 'resume'));
 
-Route::get('/portfolio', 'HomeController@showPortfolio');
+Route::get('/portfolio', array('uses' => 'HomeController@showPortfolio', 'as' => 'portfolio'));
 
-Route::get('/todo', 'HomeController@showTodo');
+Route::get('/todo', array('uses' => 'HomeController@showTodo', 'as' => 'todo');
