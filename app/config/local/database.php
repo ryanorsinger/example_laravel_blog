@@ -33,10 +33,10 @@ return array(
 
 		'pgsql' => array(
 			'driver'   => 'pgsql',
-			'host'     => 'localhost',
-			'database' => 'homestead',
-			'username' => 'homestead',
-			'password' => 'secret',
+			'host'      => $_ENV['DB_HOST'],
+			'database'  => $_ENV['DB_NAME'],
+			'username'  => $_ENV['DB_USER'],
+			'password'  => $_ENV['DB_PASS'],
 			'charset'  => 'utf8',
 			'prefix'   => '',
 			'schema'   => 'public',
