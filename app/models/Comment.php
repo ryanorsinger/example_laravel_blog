@@ -1,6 +1,6 @@
 <?php
 
-class Post extends BaseModel
+class Comment extends BaseModel
 {
-    protected $table = 'posts';
+    protected $table = 'comments';
 }

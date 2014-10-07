@@ -2,5 +2,5 @@
 
 class Tutorial extends BaseModel
 {
-    protected $table = 'tutorial';
+    protected $table = 'tutorials';
 }
