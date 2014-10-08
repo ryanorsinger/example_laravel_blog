@@ -33,3 +33,10 @@ Route::resource('users', 'UsersController');
 Route::resource('tags', 'TagsController');
 
 Route::resource('comments', 'CommentsController');
+Route::get('orm-test', function ()
+{
+    $post1 = new Post();
+    $post1->title = 'Eloquent is awesome!';
+    $post1->body  = 'It is super easy to create a new post.';
+    $post1->save();
+});
