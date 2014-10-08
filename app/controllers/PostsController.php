@@ -4,12 +4,14 @@ class PostsController extends \BaseController {
 
 	/**
 	 * Display a listing of the resource.
-	 *
+	 * GET
 	 * @return Response
 	 */
 	public function index()
 	{
-		//
+		$posts = Post::all();
+
+		return View::make('posts.index')->with('posts', $posts);
 	}
 
 
@@ -20,7 +22,7 @@ class PostsController extends \BaseController {
 	 */
 	public function create()
 	{
-		//
+		return View::make('posts.create');
 	}
 
 
@@ -31,7 +33,14 @@ class PostsController extends \BaseController {
 	 */
 	public function store()
 	{
-		//
+		$post = new Post;
+		$post->title = $title;
+		$post->body = $body;
+		$post->save();
+
+		$message = 'Post saved succesfully';
+
+		return View::('posts.index');
 	}
 
 
@@ -43,7 +52,9 @@ class PostsController extends \BaseController {
 	 */
 	public function show($id)
 	{
-		//
+		$post = Post::findOrFail($id);
+
+		return View::make('posts.show')->with($post);
 	}
 
 
@@ -79,7 +90,8 @@ class PostsController extends \BaseController {
 	 */
 	public function destroy($id)
 	{
-		//
+		$post = Post::findOrFail($id);
+		$post->delete();
 	}
 
 

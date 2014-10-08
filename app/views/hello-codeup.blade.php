@@ -4,7 +4,7 @@
     Hello CodeUp!
 @stop
 
-@section('top-script')
+@section('topscript')
     <style>
         body {
             background-color: 'cyan';
@@ -12,11 +12,11 @@
     </style>
 @stop
 
-@section('body')
+@section('content')
 <div>
     <h1>Hello, CodeUp!</h1>
 </div>
 @stop
 
-@section('bottom-script')
+@section('bottomscript')
 @stop
