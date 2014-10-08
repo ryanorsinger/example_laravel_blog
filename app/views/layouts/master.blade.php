@@ -9,11 +9,12 @@
     @yield('topscript')
 </head>
 <body>
-
+<div class="container">
 
 @yield('body')
 @yield('content')
 
+</div>
 @yield('bottomscript')
 @include('layouts.include_footer')
 </body>

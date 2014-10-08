@@ -9,10 +9,11 @@
 
 @section('content')
 <div>
-    <h1>Welcome Home!</h1>
+    <h5>Welcome Home!</h5>
 
-    <h2>{{ HTML::linkRoute('portfolio', 'Portfolio') }}</h2>
-    <h2>{{ HTML::linkRoute('resume', 'Resume') }}</h2>
+    <h5>{{ HTML::linkRoute('portfolio', 'Portfolio') }}</h5>
+    <h5>{{ HTML::linkRoute('resume', 'Resume') }}</h5>
+    <h5>{{ HTML::link_to_action('posts', 'Blog Roll') }}</h5>
 <table>
 <thead>
 <tr>
@@ -37,7 +38,7 @@
 </tr>
 <tr>
 <td><code>POST</code></td>
-<td><code>/posts/{post}</code></td>
+<td><code>/posts</code></td>
 <td><code>store</code></td>
 <td>Store the new post</td>
 </tr>

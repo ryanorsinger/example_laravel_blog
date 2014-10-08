@@ -2,6 +2,25 @@
 
 class PostsController extends \BaseController {
 
+
+	protected function savePost(Post $post)
+	{
+		//create the validator
+    	$validator = Validator::make(Input::all(), Post::$rules);
+
+		//attempt validation
+	    if ($validator->fails()) {
+        	return Redirect::back()->withInput()->withErrors($validator);
+	    } else {
+			$post = new Post;
+			$post->title = Input::get('title');
+			$post->body = Input::get('body');
+			$post->save();
+
+			return Redirect::action('PostsController@index');
+		}
+	}
+
 	/**
 	 * Display a listing of the all posts.
 	 * [GET] /posts
@@ -9,9 +28,18 @@ class PostsController extends \BaseController {
 	 */
 	public function index()
 	{
-		$posts = Post::all();
+		$search = Input::get('search');
+		$query = Post::orderBy('created_at', 'desc');
 
-		return View::make('posts.index')->with('posts', $posts);
+		if (is_null($search)) {
+			$posts = $query->paginate(3);
+		} else {
+			$posts = $query->where('title', 'LIKE', "%{$search}%")
+						   ->orWhere('body', 'LIKE', "%{$search}%")
+						   ->paginate(3);
+		}
+
+	 	return View::make('posts.index')->with('posts', $posts);
 	}
 
 
@@ -32,22 +60,10 @@ class PostsController extends \BaseController {
 	 */
 	public function store()
 	{
-	    //create the validator
-    	$validator = Validator::make(Input::all(), Post::$rules);
+	    $post = new Post;
 
-		//attempt validation
-	    if ($validator->fails()) {
-        	return Redirect::back()->withInput()->withErrors($validator);
-	    } else {
-			$post = new Post;
-			$post->title = Input::get('title');
-			$post->body = Input::get('body');
-			$post->save();
+	    return $this->savePost($post);
 
-			$message = "Your post was successfully saved.";
-
-			return Redirect::action('PostsController@index');
-		}
 	}
 
 	/**
@@ -55,6 +71,7 @@ class PostsController extends \BaseController {
 	 *
 	 * @param  int  $id
 	 * [GET] /posts/{$id}
+	 * http://blog.dev/posts/{$id}
 	 * @return Response
 	 */
 	public function show($id)
@@ -80,7 +97,6 @@ class PostsController extends \BaseController {
 		return View::make('posts.edit')->with('post', $post);
 	}
 
-
 	/**
 	 * Update the specified resource in storage.
 	 *
@@ -95,11 +111,8 @@ class PostsController extends \BaseController {
 		$post->body = Input::get('body');
 		$post->save();
 
-		$message = "Your post was successfully updated.";
+		return Redirect::action('PostsController@index');
 
-		$params = ['post' => $post, 'message' => $message];
-
-		return View::make('posts.show')->with('params', $params);
 	}
 
 	/**
@@ -113,11 +126,7 @@ class PostsController extends \BaseController {
 		$post = Post::findOrFail($id);
 		$post->delete();
 
-		$message = "Your post was succesfully deleted.";
-
-		$params = ['post', $post, 'message' => $message];
-
-		return View::make('posts.index')->with('params', $params);
+		return Redirect::action('PostsController@index');
 	}
 
 
