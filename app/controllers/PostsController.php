@@ -102,7 +102,6 @@ class PostsController extends \BaseController {
 		return View::make('posts.show')->with('params', $params);
 	}
 
-
 	/**
 	 * Remove the specified resource from storage.
 	 *
