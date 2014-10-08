@@ -31,3 +31,5 @@ Route::get('orm-test', function ()
     $post1->body  = 'It is super easy to create a new post.';
     $post1->save();
 });
+
+Route::resource('posts', 'PostsController');
