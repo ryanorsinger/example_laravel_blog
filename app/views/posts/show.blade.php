@@ -1,12 +1,21 @@
 @extends('layouts.master')
 
+@section('top-script')
+    <style type="text/css">
+        article > header {
+            margin-bottom: 20px;
+        }
+    </style>
+@stop
+
 @section('content')
-    <h1>Show Post - This is my show.blade.php</h1>
-
-    <p>{{{ $post->title }}}</p>
-    <p>{{{ $post->body }}}</p>
-
-    {{ Form::open(['method' => 'DELETE', 'action' => ['PostsController@destroy', $post->id]]) }}
-                <button type="submit" class="btn btn-danger btn-xs"><i class="glyphicon glyphicon-trash"></i><br>Delete</button>
-    {{ Form::close() }}
+    <article>
+        <header>
+            <h1>{{{ $post->title }}}</h1>
+            <small class="text-muted">posted by Buckaroo Banzai {{{ $post->updated_at->diffForHumans() }}}</small>
+        </header>
+        <p>{{{ $post->body }}}</p>
+    </article>
+    <a href="{{{ action('PostsController@index') }}}">Back</a>
+    | <a href="{{{ action('PostsController@edit', $post->id) }}}">Edit this Post</a>
 @stop

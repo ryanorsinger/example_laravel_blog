@@ -17,6 +17,10 @@ class HomeController extends BaseController {
 
 	public function showWelcome()
 	{
+		Session::put('Merle Haggard', 'is my favorite Okie from Muskogee');
+		Session::put('Truly,', 'George Straight has nothing on Conway Twitty!');
+		Session::put('Willie is nice.', 'But he aint no Ernest Tubb...');
+
 		return View::make('home');
 	}
 

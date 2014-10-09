@@ -1,24 +1,7 @@
 <?php
 
-class PostsController extends \BaseController {
-
-	protected function savePost(Post $post)
-	{
-		//create the validator
-    	$validator = Validator::make(Input::all(), Post::$rules);
-
-		//attempt validation
-	    if ($validator->fails()) {
-        	return Redirect::back()->withInput()->withErrors($validator);
-	    } else {
-			$post = new Post;
-			$post->title = Input::get('title');
-			$post->body = Input::get('body');
-			$post->save();
-
-			return Redirect::action('PostsController@index');
-		}
-	}
+class PostsController extends \BaseController
+{
 
 	/**
 	 * Display a listing of the all posts.
@@ -38,9 +21,12 @@ class PostsController extends \BaseController {
 						   ->paginate(3);
 		}
 
+		$message = 'The $_SESSION PHP SuperGlobal is an associative array containing session variables available to the current script.';
+
+		Session::put('message', $message);
+
 	 	return View::make('posts.index')->with('posts', $posts);
 	}
-
 
 	/**
 	 * Show the form for creating a new post.
@@ -49,6 +35,8 @@ class PostsController extends \BaseController {
 	 */
 	public function create()
 	{
+		Session::put('key', 'value');
+
 		return View::make('posts.create');
 	}
 
@@ -59,10 +47,26 @@ class PostsController extends \BaseController {
 	 */
 	public function store()
 	{
-	    $post = new Post;
 
-	    return $this->savePost($post);
+		//create the validator
+    	$validator = Validator::make(Input::all(), Post::$rules);
 
+		//attempt validation
+	    if ($validator->fails()) {
+
+        	return Redirect::back()->withInput()->withErrors($validator);
+
+	    } else {
+			$post = new Post;
+			$post->title = Input::get('title');
+			$post->body = Input::get('body');
+			$post->save();
+
+	   	Session::flash('successMessage', 'Post created successfully');
+
+		return Redirect::action('PostsController@index');
+
+	   }
 	}
 
 	/**
@@ -73,9 +77,15 @@ class PostsController extends \BaseController {
 	 * http://blog.dev/posts/{$id}
 	 * @return Response
 	 */
+
 	public function show($id)
 	{
-		$post = Post::findOrFail($id);
+		$post = Post::find($id);
+
+		if (!$post) {
+			Session::flash('errorMessage', 'Post could not be found!');
+			return Redirect::action('PostsController@index');
+		}
 
 		return View::make('posts.show')->with('post', $post);
 	}
@@ -91,7 +101,7 @@ class PostsController extends \BaseController {
 	 */
 	public function edit($id)
 	{
-		$post = Post::findOrFail($id);
+		$post = Post::find($id);
 
 		return View::make('posts.edit')->with('post', $post);
 	}
@@ -104,11 +114,13 @@ class PostsController extends \BaseController {
 	 */
 	public function update($id)
 	{
-		$post = Post::findOrFail($id);
+		$post = Post::find($id);
 
 		$post->title = Input::get('title');
 		$post->body = Input::get('body');
 		$post->save();
+
+		Session::flash('successMessage', 'Post updated successfully');
 
 		return Redirect::action('PostsController@index');
 
@@ -122,11 +134,31 @@ class PostsController extends \BaseController {
 	 */
 	public function destroy($id)
 	{
-		$post = Post::findOrFail($id);
+		$post = Post::find($id);
 		$post->delete();
 
-		return Redirect::action('PostsController@index');
+		Session::flash('warningMessage', 'Post successfully deleted');
+
+		return Redirect::back()->with('PostsController@index');
 	}
 
+
+	protected function savePost(Post $post)
+	{
+		//create the validator
+    	$validator = Validator::make(Input::all(), Post::$rules);
+
+		//attempt validation
+	    if ($validator->fails()) {
+        	return Redirect::back()->withInput()->withErrors($validator);
+	    } else {
+			$post = new Post;
+			$post->title = Input::get('title');
+			$post->body = Input::get('body');
+			$post->save();
+
+			return Redirect::action('PostsController@index');
+		}
+	}
 
 }

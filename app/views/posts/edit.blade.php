@@ -3,17 +3,20 @@
 @section('title')
 Edit Post
 @stop
+@section('page-head')
+    <h1 class="page-header">Edit &ldquo;{{{ $post->title }}}&rdquo;</h1>
+@stop
 
 @section('content')
     {{ Form::model($post, array('action' => ['PostsController@update', $post->id], 'class' => 'form-horizontal', 'method' => 'PUT' )) }}
 
-    {{ Form::label('title', 'Title') }}
-    {{ Form::text('title') }}
+        @include('posts.form')
 
-    {{ Form::label('body', 'Body') }}
-    {{ Form::text('body') }}
+        <div class="form-group">
+            <div class="col-sm-offset-2 col-sm-10">
+                {{ Form::submit('Update Post', array('class' => 'btn btn-primary')) }}
+            </div>
+        </div>
 
-    {{ Form::submit('Click to Update') }}
     {{ Form::close() }}
-
 @stop

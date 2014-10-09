@@ -1,17 +1,19 @@
 @extends('layouts.master')
+@section('page-head')
+    <h1 class="page-header">Create a New Post</h1>
+@stop
 
 @section('content')
-<div>
-{{ Form::open(array('action' => 'PostsController@store')) }}
 
-{{ Form::label('title', 'Title') }}
-{{ Form::text('title') }}
+    {{ Form::open(array('action' => 'PostsController@store', 'class' => 'form-horizontal')) }}
 
-{{ Form::label('body', 'Body') }}
-{{ Form::text('body') }}
+        @include('posts.form')
 
-{{ Form::submit('Click to POST') }}
+        <div class="form-group">
+            <div class="col-sm-offset-2 col-sm-10">
+                {{ Form::submit('Create Post', array('class' => 'btn btn-primary')) }}
+            </div>
+        </div>
 
-{{ Form::close() }}
-</div>
+    {{ Form::close() }}
 @stop
