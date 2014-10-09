@@ -8,12 +8,43 @@
 @stop
 
 @section('content')
-<div>
-    <h5>Welcome Home!</h5>
 
-    <h5>{{ HTML::linkRoute('portfolio', 'Portfolio') }}</h5>
-    <h5>{{ HTML::linkRoute('resume', 'Resume') }}</h5>
-    <h5>{{ HTML::link_to_action('posts', 'Blog Roll') }}</h5>
+<div>
+    <h4>Welcome Home!</h5>
+    <div class="row bs">
+    <div class="col-sm-4">
+      <h3 id="download-bootstrap">Resources</h3>
+      <p>Compiled and minified CSS, JavaScript, and fonts. No docs or original source files are included.</p>
+      <p>
+        <a href="https://github.com/twbs/bootstrap/releases/download/v3.2.0/bootstrap-3.2.0-dist.zip" class="btn btn-lg btn-outline" role="button" onclick="ga('send', 'event', 'Getting started', 'Download', 'Download compiled');">Download Bootstrap</a>
+      </p>
+    </div>
+    <div class="col-sm-4">
+      <h3 id="download-source">Source code</h3>
+      <p>Source Less, JavaScript, and font files, along with our docs. <strong>Requires a Less compiler and <a href="#grunt">some setup.</a></strong></p>
+      <p>
+        <a href="https://github.com/twbs/bootstrap/archive/v3.2.0.zip" class="btn btn-lg btn-outline" role="button" onclick="ga('send', 'event', 'Getting started', 'Download', 'Download source');">Download source</a>
+      </p>
+    </div>
+    <div class="col-sm-4">
+      <h3 id="download-sass">Sass</h3>
+      <p><a href="https://github.com/twbs/bootstrap-sass">Bootstrap ported from Less to Sass</a> for easy inclusion in Rails, Compass, or Sass-only projects.</p>
+      <p>
+        <a href="https://github.com/twbs/bootstrap-sass/archive/v3.2.0.tar.gz" class="btn btn-lg btn-outline" role="button" onclick="ga('send', 'event', 'Getting started', 'Download', 'Download Sass');">Download Sass</a>
+      </p>
+    </div>
+  </div>
+
+    <h4>{{ HTML::linkRoute('portfolio', 'Portfolio') }}</h4>
+    <h4>{{ HTML::linkRoute('resume', 'Resume') }}</h4>
+    <h4>{{ link_to_action('PostsController@index', 'Blog Roll') }}</h4>
+
+</div>
+    <div>
+        <img src="/assets/images/elvis.jpg">
+    </div>
+</div>
+
 <table>
 <thead>
 <tr>
@@ -68,11 +99,7 @@
 </tr>
 </tbody>
 </table>
-</div>
-    <div>
-        <img src="/assets/images/elvis.jpg">
-    </div>
-</div>
+
 @stop
 
 @section('bottomscript')

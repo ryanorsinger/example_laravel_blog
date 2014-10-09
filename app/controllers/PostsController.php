@@ -2,7 +2,6 @@
 
 class PostsController extends \BaseController {
 
-
 	protected function savePost(Post $post)
 	{
 		//create the validator
