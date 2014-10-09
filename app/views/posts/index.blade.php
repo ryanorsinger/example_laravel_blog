@@ -19,9 +19,11 @@
             <p>{{{ $post->body }}}</p>
             <a class="btn btn-success btn-xs" href="{{{ action('PostsController@edit', $post->id) }}}"><i class="glyphicon glyphicon-edit"></i>Edit Post</a>
 
-            {{ Form::open(['method' => 'DELETE', 'action' => ['PostsController@destroy', $post->id]]) }}
-                <button type="submit" class="btn btn-danger btn-xs"><i class="glyphicon glyphicon-trash"></i>Delete</button>
+        {{ Form::open(['method' => 'DELETE', 'action' => ['PostsController@destroy', $post->id]]) }}
+                <button type="submit">Delete</button>
+
             {{ Form::close() }}
+
 
     @endforeach
 {{ $posts->links() }}

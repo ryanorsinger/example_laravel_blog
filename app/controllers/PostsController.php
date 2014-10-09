@@ -54,7 +54,11 @@ class PostsController extends \BaseController
 		//attempt validation
 	    if ($validator->fails()) {
 
-        	return Redirect::back()->withInput()->withErrors($validator);
+			Session::flash('errorMessage', "Post must have a title and body.");
+
+			Log::error('Post validator failed', Input::all());
+
+        	return Redirect::back()->withInput();
 
 	    } else {
 			$post = new Post;
@@ -62,7 +66,11 @@ class PostsController extends \BaseController
 			$post->body = Input::get('body');
 			$post->save();
 
-	   	Session::flash('successMessage', 'Post created successfully');
+		Log::info('Post was successfully saved.', Input::all());
+
+		$message = 'Post created successfully';
+
+	   	Session::flash('successMessage', $message);
 
 		return Redirect::action('PostsController@index');
 
@@ -83,8 +91,9 @@ class PostsController extends \BaseController
 		$post = Post::find($id);
 
 		if (!$post) {
-			Session::flash('errorMessage', 'Post could not be found!');
-			return Redirect::action('PostsController@index');
+
+			Log::error('Post was not found');
+			return App::abort(404);
 		}
 
 		return View::make('posts.show')->with('post', $post);
@@ -102,6 +111,11 @@ class PostsController extends \BaseController
 	public function edit($id)
 	{
 		$post = Post::find($id);
+
+		if(!$post) {
+
+			Log::error('Post validator failed');
+		}
 
 		return View::make('posts.edit')->with('post', $post);
 	}
@@ -135,11 +149,18 @@ class PostsController extends \BaseController
 	public function destroy($id)
 	{
 		$post = Post::find($id);
+
+		if(!$post) {
+			App::abort(404);
+		}
+
 		$post->delete();
 
-		Session::flash('warningMessage', 'Post successfully deleted');
+		Log::info('Post deleted successfully');
 
-		return Redirect::back()->with('PostsController@index');
+		Session::flash('successMessage', 'Post deleted successfully');
+
+		return Redirect::action('PostsController@index');
 	}
 
 
