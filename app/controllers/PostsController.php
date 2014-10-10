@@ -21,10 +21,6 @@ class PostsController extends \BaseController
 						   ->paginate(3);
 		}
 
-		$message = 'The $_SESSION PHP SuperGlobal is an associative array containing session variables available to the current script.';
-
-		Session::put('message', $message);
-
 	 	return View::make('posts.index')->with('posts', $posts);
 	}
 
@@ -35,8 +31,6 @@ class PostsController extends \BaseController
 	 */
 	public function create()
 	{
-		Session::put('key', 'value');
-
 		return View::make('posts.create');
 	}
 
@@ -48,33 +42,14 @@ class PostsController extends \BaseController
 	public function store()
 	{
 
-		//create the validator
-    	$validator = Validator::make(Input::all(), Post::$rules);
-
-		//attempt validation
-	    if ($validator->fails()) {
-
-			Session::flash('errorMessage', "Post must have a title and body.");
-
-			Log::error('Post validator failed', Input::all());
-
-        	return Redirect::back()->withInput();
-
-	    } else {
-			$post = new Post;
-			$post->title = Input::get('title');
-			$post->body = Input::get('body');
-			$post->save();
+		$post = new Post;
 
 		Log::info('Post was successfully saved.', Input::all());
 
-		$message = 'Post created successfully';
+	   	Session::flash('successMessage', 'Your post was successfully saved.');
 
-	   	Session::flash('successMessage', $message);
+	   	return $this->savePost($post);
 
-		return Redirect::action('PostsController@index');
-
-	   }
 	}
 
 	/**
@@ -113,7 +88,7 @@ class PostsController extends \BaseController
 		$post = Post::find($id);
 
 		if(!$post) {
-
+			App::abort(404);
 			Log::error('Post validator failed');
 		}
 
@@ -130,14 +105,13 @@ class PostsController extends \BaseController
 	{
 		$post = Post::find($id);
 
-		$post->title = Input::get('title');
-		$post->body = Input::get('body');
-		$post->save();
+		if(!$post) {
+			App::abort(404);
+		}
 
 		Session::flash('successMessage', 'Post updated successfully');
 
-		return Redirect::action('PostsController@index');
-
+		return $this->savePost($post);
 	}
 
 	/**
@@ -163,7 +137,12 @@ class PostsController extends \BaseController
 		return Redirect::action('PostsController@index');
 	}
 
-
+	/**
+	 *
+	 * The savePost handles validation and saving to the db for store() and update() actions.
+	 * @var $post object or NULL
+	 *
+	 */
 	protected function savePost(Post $post)
 	{
 		//create the validator
@@ -173,7 +152,6 @@ class PostsController extends \BaseController
 	    if ($validator->fails()) {
         	return Redirect::back()->withInput()->withErrors($validator);
 	    } else {
-			$post = new Post;
 			$post->title = Input::get('title');
 			$post->body = Input::get('body');
 			$post->save();
