@@ -30,4 +30,9 @@ class User extends BaseModel implements UserInterface, RemindableInterface {
         'first_name'	=> 'required|max:255',
         'last_name'		=> 'required|max:255',
         );
+
+    public function posts()
+    {
+        return $this->hasMany('Post');
+    }
 }
