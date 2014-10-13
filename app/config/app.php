@@ -123,7 +123,6 @@ return array(
 		'Illuminate\Workbench\WorkbenchServiceProvider',
 		'Laracasts\Commander\CommanderServiceProvider',
 
-
 	),
 
 	/*
