@@ -10,6 +10,9 @@ class PostsController extends \BaseController
 	 */
 	public function index()
 	{
+		//Gets a model of the currently authenticated user
+		// dd(Auth::user()->id);
+
 		$search = Input::get('search');
 		$query = Post::orderBy('created_at', 'desc');
 
@@ -154,6 +157,7 @@ class PostsController extends \BaseController
 	    } else {
 			$post->title = Input::get('title');
 			$post->body = Input::get('body');
+			$post->user_id = Auth::user()->id;
 			$post->save();
 
 			return Redirect::action('PostsController@index');
