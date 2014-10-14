@@ -9,8 +9,6 @@
 
 @section('content')
 
-  {{ var_dump(Session::all()) }}
-
 <div class="col-md-4">
 
     <h4>{{ HTML::linkRoute('portfolio', 'Portfolio') }}</h4>
