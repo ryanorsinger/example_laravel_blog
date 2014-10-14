@@ -29,8 +29,18 @@
 {{ $posts->links() }}
 </div>
 <div class="col-xs-6 col-sm-3 sidebar-offcanvas" id="sidebar" role="navigation">
-    <p>Click the rainbow to create a new post</p>
-    <a href="{{{ action('PostsController@create') }}}"><img src="/img/amorcito.jpg"></a>
+    {{ Form::open(array('action' => array('PostsController@index'), 'class' => 'form-horizontal', 'method' => 'GET')) }}
+
+    {{ Form::text('search', null) }}
+
+    {{ Form::submit('Search') }}
+
+    {{ Form:: close() }}
+    <div>
+        <br>
+        <p>Click the rainbow to create a new post</p>
+        <a href="{{{ action('PostsController@create') }}}"><img src="/img/amorcito.jpg"></a>
+    </div>
 </div>
 @stop
 
