@@ -36,10 +36,12 @@
     {{ Form::submit('Search') }}
 
     {{ Form:: close() }}
+<br>
+    <a href="{{{ action('PostsController@create') }}}"><button type="button" class="btn btn-primary btn-lg btn-block">Create New Post</button></a>
+
     <div>
         <br>
-        <p>Click the rainbow to create a new post</p>
-        <a href="{{{ action('PostsController@create') }}}"><img src="/img/amorcito.jpg"></a>
+       <img src="/img/amorcito.jpg">
     </div>
 </div>
 @stop

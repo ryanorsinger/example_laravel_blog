@@ -9,7 +9,7 @@ class PostsTableSeeder extends Seeder {
 	{
 		$faker = Faker::create();
 
-		foreach(range(1, 13) as $index)
+		foreach(range(1, 23) as $index)
 		{
 			Post::create([
 
