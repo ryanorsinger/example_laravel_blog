@@ -8,7 +8,7 @@
 @stop
 
 @section('content')
-
+<h1>BRANCHES ARE AWESOME</h1>
 <div class="col-md-4">
 
     <h4>{{ HTML::linkRoute('portfolio', 'Portfolio') }}</h4>
