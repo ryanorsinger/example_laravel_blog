@@ -1,6 +1,19 @@
 <?php
 
-class BaseController extends Controller {
+class BaseController extends Controller
+{
+
+    /**
+     * Default layout template
+     *
+     * @var string
+     */
+    protected $layout = 'layouts.master';
+
+    public function __construct()
+    {
+        $this->beforeFilter('csrf', array('on' => array('post', 'delete', 'put')));
+    }
 
 	/**
 	 * Setup the layout used by the controller.

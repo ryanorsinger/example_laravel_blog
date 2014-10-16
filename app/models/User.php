@@ -5,7 +5,7 @@ use Illuminate\Auth\UserInterface;
 use Illuminate\Auth\Reminders\RemindableTrait;
 use Illuminate\Auth\Reminders\RemindableInterface;
 
-class User extends Eloquent implements UserInterface, RemindableInterface {
+class User extends BaseModel implements UserInterface, RemindableInterface {
 
 	use UserTrait, RemindableTrait;
 
@@ -23,4 +23,16 @@ class User extends Eloquent implements UserInterface, RemindableInterface {
 	 */
 	protected $hidden = array('password', 'remember_token');
 
+	public static $rules = array(
+		'username'      => 'required|max:100',
+        'email'       	=> 'required|email|unique:users',
+        'password'		=> 'required|confirmed',
+        'first_name'	=> 'required|max:255',
+        'last_name'		=> 'required|max:255',
+        );
+
+    public function posts()
+    {
+        return $this->hasMany('Post');
+    }
 }

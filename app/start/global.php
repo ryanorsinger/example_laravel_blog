@@ -79,3 +79,14 @@ App::down(function()
 */
 
 require app_path().'/filters.php';
+
+
+/**
+ * Custom 404 Page to show on App::abort(404)
+ *
+ */
+App::missing(function($exception)
+{
+    Log::error('Something is really going wrong.');
+    return Response::view('errors.missing', array(), 404);
+});

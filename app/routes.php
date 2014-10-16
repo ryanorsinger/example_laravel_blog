@@ -10,55 +10,33 @@
 | and give it the Closure to execute when that URI is requested.
 |
 */
-
-Route::get('/', function()
-{
-	return View::make('hello');
-});
-
-/* Example GET route */
-Route::get('/sayhello', function()
-{
-    return "Hello, Codeup!";
-});
+Route::get('/', array('uses' => 'HomeController@showWelcome', 'as' => 'home'));
 
 /*
  * Curly brackets specify a dynamic route parameter.
  * @var name is passed in from the URI to the view.
  */
-Route::get('/sayhello/{name?}/', function($name = NULL)
+Route::get('/sayhello/{name}', array('uses' => 'HomeController@sayHello', 'as' => 'sayhello'));
+
+Route::get('/resume', array('uses' => 'HomeController@showResume', 'as' => 'resume'));
+
+Route::get('/portfolio', array('uses' => 'HomeController@showPortfolio', 'as' => 'portfolio'));
+
+Route::get('/todo', array('uses' => 'HomeController@showTodo', 'as' => 'todo'));
+
+Route::resource('posts', 'PostsController');
+
+Route::resource('tutorials', 'TutorialsController');
+
+Route::resource('users', 'UsersController');
+
+Route::resource('tags', 'TagsController');
+
+Route::resource('comments', 'CommentsController');
+Route::get('orm-test', function ()
 {
-    $data = array('name' => $name);
-    return View::make('my-first-view')->with($data);
-});
-
-Route::get('/portfolio', function()
-{
-    return "This is my portfolio";
-});
-
-Route::get('/resume', function()
-{
-    return "This is my resume";
-});
-
-Route::get('/hellocodeup', function()
-{
-    return View::make('hello-codeup');
-});
-
-/* Guess is an optional route parameter. If no guess is passed, it defualts to NULL */
-Route::get('/rolldice/{guess?}', function($guess = NULL)
-{
-    /* Generate a random dice roll between 1 and 20 */
-    $roll = rand(1,20);
-
-    /* Prepare the data to send to the view */
-    $data_sent_to_view = array(
-        'roll' => $roll,
-        'guess' => $guess
-        );
-
-    /* Return the view */
-    return View::make('roll-dice')->with($data_sent_to_view);
+    $post1 = new Post();
+    $post1->title = 'Eloquent is awesome!';
+    $post1->body  = 'It is super easy to create a new post.';
+    $post1->save();
 });
