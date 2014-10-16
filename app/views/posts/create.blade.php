@@ -4,7 +4,6 @@
 @stop
 
 @section('content')
- {{ var_dump($errors) }}
 
     {{ Form::open(array('action' => 'PostsController@store', 'class' => 'form-horizontal')) }}
 
