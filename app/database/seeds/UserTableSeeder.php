@@ -1,4 +1,5 @@
 <?php
+use Faker\Factory as Faker;
 
 class UserTableSeeder extends Seeder
 {
