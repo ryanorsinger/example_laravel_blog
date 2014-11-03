@@ -1,5 +1,7 @@
 /bootstrap/compiled.php
 /vendor
+/turner
+/bbatsche
 composer.phar
 .env.*.php
 .env.php
