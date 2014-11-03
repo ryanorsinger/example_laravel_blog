@@ -15,9 +15,6 @@
     <p>
       <a class="btn btn-lg btn-primary" href="../../components/#navbar" role="button">View Posts »</a>
     </p>
-    <!-- <p>
-      <a class="btn btn-lg btn-success" href="../../components/#navbar" role="button">Laravel Resources »</a>
-    </p> -->
 </div>
 
 

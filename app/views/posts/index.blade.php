@@ -5,29 +5,28 @@
 @stop
 
 @section('content')
-<h4>Blog Index Page</h4>
 @if (Session::has('message'))
     {{{ Session::get('message') }}}
 @endif
 <div class="blog-header">
-    <h1 class="blog-title">The Bootstrap Blog</h1>
-    <p class="lead blog-description">The official example template of creating a blog with Bootstrap.</p>
+    <h1 class="blog-title">Blog Posts</h1>
+    <p class="lead blog-description">Index of Posts</p>
 </div>
 
 <div class="col-md-8">
 <div>
 </div>
     @foreach($posts as $post)
-
+        <article>
             <h3><a href="{{{ action('PostsController@show', $post->id) }}}">{{{ $post->title }}}</a></h3>
             <p>{{{ $post->body }}}</p>
             <a class="btn btn-success btn-xs" href="{{{ action('PostsController@edit', $post->id) }}}"><i class="glyphicon glyphicon-edit"></i>Edit Post</a>
 
-        {{ Form::open(['method' => 'DELETE', 'action' => ['PostsController@destroy', $post->id]]) }}
+            {{ Form::open(['method' => 'DELETE', 'action' => ['PostsController@destroy', $post->id]]) }}
                 <button type="submit">Delete</button>
 
             {{ Form::close() }}
-
+        </article>
 
     @endforeach
 {{ $posts->links() }}

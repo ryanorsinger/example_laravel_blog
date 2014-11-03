@@ -9,9 +9,6 @@
         <div class="navbar-collapse collapse" id="navbar-main">
           <ul class="nav navbar-nav">
             <li>
-              <a href="#">Laravel Resources</a>
-            </li>
-            <li>
               <a href="#">Portfolio</a>
             </li>
             <li>
