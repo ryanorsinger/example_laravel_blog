@@ -34,7 +34,7 @@
 <div class="col-xs-6 col-sm-3 sidebar-offcanvas" id="sidebar" role="navigation">
     {{ Form::open(array('action' => array('PostsController@index'), 'class' => 'form-horizontal', 'method' => 'GET')) }}
 
-    {{ Form::text('search', null) }}
+    {{ Form::text('search', null, array('placeholder' => 'Search Posts')) }}
 
     {{ Form::submit('Search') }}
 
