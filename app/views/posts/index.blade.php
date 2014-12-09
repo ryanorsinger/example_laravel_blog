@@ -20,16 +20,18 @@
         <article>
             <h3><a href="{{{ action('PostsController@show', $post->id) }}}">{{{ $post->title }}}</a></h3>
             <p>{{{ $post->body }}}</p>
-            <a class="btn btn-success btn-xs" href="{{{ action('PostsController@edit', $post->id) }}}"><i class="glyphicon glyphicon-edit"></i>Edit Post</a>
+            <a class="btn btn-success btn-xs" href="{{{ action('PostsController@edit', $post->id) }}}"><i class="glyphicon glyphicon-edit"></i>&nbsp;Edit Post</a>
 
-            {{ Form::open(['method' => 'DELETE', 'action' => ['PostsController@destroy', $post->id]]) }}
-                <button type="submit">Delete</button>
+            <button class="btn btn-danger delete-btn btn-xs" data-post-id="{{{ $post->id }}}"><span class="glyphicon glyphicon-trash" aria-hidden="true"></span>&nbsp;Delete</button>
 
             {{ Form::close() }}
         </article>
 
     @endforeach
-{{ $posts->links() }}
+
+    {{ $posts->appends(array('search' => $search))->links() }}
+
+
 </div>
 <div class="col-xs-6 col-sm-3 sidebar-offcanvas" id="sidebar" role="navigation">
     {{ Form::open(array('action' => array('PostsController@index'), 'class' => 'form-horizontal', 'method' => 'GET')) }}
@@ -39,7 +41,7 @@
     {{ Form::submit('Search') }}
 
     {{ Form:: close() }}
-<br>
+    <br>
     <a href="{{{ action('PostsController@create') }}}"><button type="button" class="btn btn-primary btn-lg btn-block">Create New Post</button></a>
 
     <div>
@@ -47,5 +49,18 @@
        <img src="/img/amorcito.jpg">
     </div>
 </div>
+
+    {{ Form::open(['method' => 'DELETE', 'id' => 'delete-form']) }}
+    {{ Form::close() }}
+
 @stop
 
+@section('bottomscript')
+    <script type="text/javascript">
+        $('#delete-btn').click(function() {
+            var postId = $(this).data('post-id');
+            console.log("foo");
+        });
+
+    </script>
+@stop

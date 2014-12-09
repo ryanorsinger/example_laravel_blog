@@ -18,19 +18,18 @@ class PostsController extends \BaseController
 	 */
 	public function index()
 	{
+		$query = Post::with('user');
 
 		$search = Input::get('search');
-		$query = Post::orderBy('created_at', 'desc');
 
-		if (is_null($search)) {
-			$posts = $query->paginate(3);
-		} else {
-			$posts = $query->where('title', 'LIKE', "%{$search}%")
-						   ->orWhere('body', 'LIKE', "%{$search}%")
-						   ->paginate(3);
+		if (!is_null($search)) {
+			$query->where('title', 'LIKE', "%{$search}%")
+					->orWhere('body', 'LIKE', "%{$search}%");
 		}
 
-	 	return View::make('posts.index')->with('posts', $posts);
+		$posts = $query->orderBy('created_at', 'desc')->paginate(3);
+
+	 	return View::make('posts.index')->with('posts', $posts)->with('search', $search);
 	}
 
 	/**
@@ -139,10 +138,6 @@ class PostsController extends \BaseController
 		}
 
 		$post->delete();
-
-		Log::info('Post deleted successfully');
-
-		Session::flash('successMessage', 'Post deleted successfully');
 
 		return Redirect::action('PostsController@index');
 	}
