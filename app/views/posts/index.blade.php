@@ -28,7 +28,7 @@
         </article>
 
     @endforeach
-
+    {{-- this is a comment in blade --}}
     {{ $posts->appends(array('search' => $search))->links() }}
 
 
@@ -37,7 +37,7 @@
     {{ Form::open(array('action' => array('PostsController@index'), 'class' => 'form-horizontal', 'method' => 'GET')) }}
 
     {{ Form::text('search', null, array('placeholder' => 'Search Posts')) }}
-
+`
     {{ Form::submit('Search') }}
 
     {{ Form:: close() }}
