@@ -17,13 +17,7 @@ class HomeController extends BaseController {
 
 	public function showWelcome()
 	{
-		return Redirect::action('PostsController@index');
-	}
-
-	public function sayHello($name)
-	{
-	    $data = array('name' => $name);
-	    return View::make('my-first-view')->with($data);
+		return View::make('home');
 	}
 
 	public function showResume()
@@ -36,8 +30,4 @@ class HomeController extends BaseController {
     	return View::make('portfolio');
 	}
 
-	public function showTodo()
-	{
-		return View::make('todo');
-	}
 }

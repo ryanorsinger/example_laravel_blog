@@ -13,7 +13,7 @@
     <p class="lead blog-description">Index of Posts</p>
 </div>
 
-<div class="col-md-8">
+<div class="col-xs-8">
 <div>
 </div>
     @foreach($posts as $post)
@@ -33,20 +33,20 @@
 
 
 </div>
-<div class="col-xs-6 col-sm-3 sidebar-offcanvas" id="sidebar" role="navigation">
+<div class="col-xs-4" id="sidebar" role="navigation">
     {{ Form::open(array('action' => array('PostsController@index'), 'class' => 'form-horizontal', 'method' => 'GET')) }}
 
     {{ Form::text('search', null, array('placeholder' => 'Search Posts')) }}
-`
+
     {{ Form::submit('Search') }}
 
     {{ Form:: close() }}
     <br>
-    <a href="{{{ action('PostsController@create') }}}"><button type="button" class="btn btn-primary btn-lg btn-block">Create New Post</button></a>
+    <a href="{{{ action('PostsController@create') }}}"><button type="button" class="pink btn btn-primary btn-lg btn-block">Create New Post</button></a>
 
     <div>
         <br>
-       <img src="/img/amorcito.jpg">
+       <img class="centered"src="/img/amorcito.jpg">
     </div>
 </div>
 
@@ -57,10 +57,17 @@
 
 @section('bottomscript')
     <script type="text/javascript">
-        $('#delete-btn').click(function() {
+        $('.delete-btn').click(function() {
+
             var postId = $(this).data('post-id');
-            console.log("foo");
+
+            $("#delete-form").attr('action', '/posts/' + postId);
+
+            if (confirm('Are you sure you want to delete this post?')) {
+                $("#delete-form").submit();
+            }
         });
 
     </script>
+
 @stop
