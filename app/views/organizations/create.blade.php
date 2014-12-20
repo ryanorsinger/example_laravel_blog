@@ -1,0 +1,1 @@
+/vagrant/sites/ryanblog.dev/app/views/organizations/create.blade.php

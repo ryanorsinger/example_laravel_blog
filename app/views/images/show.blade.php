@@ -1,0 +1,1 @@
+/vagrant/sites/ryanblog.dev/app/views/images/show.blade.php

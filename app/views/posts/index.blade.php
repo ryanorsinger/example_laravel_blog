@@ -1,4 +1,4 @@
-@extends('layouts.master')
+f@extends('layouts.master')
 
 @section('title')
     Blog Post Index
@@ -30,7 +30,6 @@
     @endforeach
     {{-- this is a comment in blade --}}
     {{ $posts->appends(array('search' => $search))->links() }}
-
 
 </div>
 <div class="col-xs-4" id="sidebar" role="navigation">

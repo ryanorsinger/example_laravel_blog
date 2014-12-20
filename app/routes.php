@@ -20,6 +20,16 @@ Route::resource('posts', 'PostsController');
 
 Route::resource('users', 'UsersController');
 
+Route::resource('locations', 'LocationsController');
+
+Route::resource('events', 'HappeningsController');
+
+Route::resource('organizations', 'OrganizationsController');
+
 Route::resource('tags', 'TagsController');
 
-Route::resource('comments', 'CommentsController');
+Route::resource('pages', 'GatheringsController');
+
+Route::resource('profiles', 'ProfilesController');
+
+Route::resource('images', 'ImagesController');

@@ -14,7 +14,7 @@ class PostsTableSeeder extends Seeder {
 			Post::create([
             'title' => $faker->catchPhrase,
             'body' => $faker->paragraph($nbSentences = 3),
-            'user_id' => $faker->numberBetween(1, 10)
+            'user_id' => $faker->numberBetween(1, 17)
 			]);
 		}
 	}

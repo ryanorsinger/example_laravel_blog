@@ -21,6 +21,7 @@ class CreateUsersTable extends Migration {
             $table->rememberToken();
             $table->text('first_name')->nullable();
             $table->text('last_name')->nullable();
+            $table->enum('role', array('admin', 'contributor', 'guest'));
             $table->timestamps();
         });
 	}

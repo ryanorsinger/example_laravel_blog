@@ -1,9 +1,9 @@
 <?php
 
-use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Database\Migrations\Migration;
+use Illuminate\Database\Schema\Blueprint;
 
-class AddAddressToUserTable extends Migration {
+class CreateTagsTable extends Migration {
 
 	/**
 	 * Run the migrations.
@@ -12,8 +12,13 @@ class AddAddressToUserTable extends Migration {
 	 */
 	public function up()
 	{
-		//
+		Schema::create('tags', function(Blueprint $table)
+		{
+			$table->increments('id');
+			$table->timestamps();
+		});
 	}
+
 
 	/**
 	 * Reverse the migrations.
@@ -22,7 +27,7 @@ class AddAddressToUserTable extends Migration {
 	 */
 	public function down()
 	{
-		//
+		Schema::drop('tags');
 	}
 
 }

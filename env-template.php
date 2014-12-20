@@ -16,7 +16,8 @@ return array(
     'USER_FIRSTNAME' => '',
     'USER_LASTNAME' => '',
 
-    'GOOGLE_API_KEY' => '',
-
     'SITE_URL' => '',
+    'BREWERY_DB_KEY' => '',
+
+    'GOOGLE_MAPS_API_KEY' => '',
 );
