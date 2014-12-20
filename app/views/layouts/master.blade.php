@@ -9,6 +9,7 @@
     @yield('topscript')
 </head>
 <body>
+@include ('partials.navbar')
 
 @if (Session::has('successMessage'))
     <div class="alert alert-success">{{{ Session::get('successMessage') }}}</div>
@@ -22,13 +23,6 @@
 @if (Session::has('infoMessage'))
     <div class="alert alert-info">{{{ Session::get('infoMessage') }}}</div>
 @endif
-
-    <header>
-
-        <div class="container">
-            @yield('page-head')
-        </div>
-    </header>
 
 <div class="container">
 

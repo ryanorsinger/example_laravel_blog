@@ -17,14 +17,7 @@ class HomeController extends BaseController {
 
 	public function showWelcome()
 	{
-
 		return View::make('home');
-	}
-
-	public function sayHello($name)
-	{
-	    $data = array('name' => $name);
-	    return View::make('my-first-view')->with($data);
 	}
 
 	public function showResume()
@@ -37,8 +30,4 @@ class HomeController extends BaseController {
     	return View::make('portfolio');
 	}
 
-	public function showTodo()
-	{
-		return View::make('todo');
-	}
 }

@@ -10,4 +10,14 @@ return array(
     'MAIL_USER' => '',
     'MAIL_PASS' => '',
 
+    'USER_USERNAME' => '',
+    'USER_PASSWORD' => '',
+    'USER_EMAIL' => '',
+    'USER_FIRSTNAME' => '',
+    'USER_LASTNAME' => '',
+
+    'SITE_URL' => '',
+    'BREWERY_DB_KEY' => '',
+
+    'GOOGLE_MAPS_API_KEY' => '',
 );
