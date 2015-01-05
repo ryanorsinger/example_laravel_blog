@@ -1,4 +1,4 @@
-f@extends('layouts.master')
+@extends('layouts.master')
 
 @section('title')
     Blog Post Index
@@ -20,6 +20,9 @@ f@extends('layouts.master')
         <article>
             <h3><a href="{{{ action('PostsController@show', $post->id) }}}">{{{ $post->title }}}</a></h3>
             <p>{{{ $post->body }}}</p>
+            @foreach($post->images as $image)
+                <img src="{{ "/img/" . $image->filename }}">
+            @endforeach
             <a class="btn btn-success btn-xs" href="{{{ action('PostsController@edit', $post->id) }}}"><i class="glyphicon glyphicon-edit"></i>&nbsp;Edit Post</a>
 
             <button class="btn btn-danger delete-btn btn-xs" data-post-id="{{{ $post->id }}}"><span class="glyphicon glyphicon-trash" aria-hidden="true"></span>&nbsp;Delete</button>

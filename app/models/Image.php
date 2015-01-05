@@ -1,8 +1,10 @@
 <?php
 
-class Image extends \Eloquent {
+class Image extends BaseModel {
 
-	// Add your validation rules here
+    protected $table = 'images';
+
+    // Add your validation rules here
 	public static $rules = [
 		// 'title' => 'required'
 	];
@@ -10,4 +12,8 @@ class Image extends \Eloquent {
 	// Don't forget to fill this array
 	protected $fillable = [];
 
+    public function post()
+    {
+        return $this->belongsTo('Post');
+    }
 }

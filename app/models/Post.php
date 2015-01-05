@@ -17,4 +17,9 @@ class Post extends BaseModel
     {
         return $this->belongsTo('User');
     }
+
+    public function images()
+    {
+        return $this->hasMany('Image');
+    }
 }
