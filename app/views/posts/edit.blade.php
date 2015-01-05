@@ -8,7 +8,7 @@ Edit Post
 @stop
 
 @section('content')
-    {{ Form::model($post, array('action' => ['PostsController@update', $post->id], 'class' => 'form-horizontal', 'method' => 'PUT' )) }}
+    {{ Form::model($post, array('action' => ['PostsController@update', $post->id], 'class' => 'form-horizontal', 'method' => 'PUT', 'files' => true )) }}
 
         @include('posts.form')
 

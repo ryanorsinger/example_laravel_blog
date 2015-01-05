@@ -35,7 +35,7 @@ class UserTableSeeder extends Seeder
             'password' => $faker->phoneNumber,
             'first_name' => $faker->firstName,
             'last_name' => $faker->lastName,
-            'role' => $role[rand(0,1)];
+            'role' => $role[rand(0,1)]
             ]);
         }
     }
