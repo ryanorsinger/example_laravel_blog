@@ -9,16 +9,17 @@
     {{{ Session::get('message') }}}
 @endif
 <div class="blog-header">
-    <h1 class="blog-title">Blog Posts</h1>
-    <p class="lead blog-description">Index of Posts</p>
+    <h1 class="blog-title">Articles</h1>
 </div>
 
-<div class="col-xs-8">
-<div>
-</div>
+<div class="col-xs-6">
+    <div class="blog-header">
+        <h3 class="blog-title">Articles</h3>
+    </div>
+
     @foreach($posts as $post)
         <article>
-            <h3><a href="{{{ action('PostsController@show', $post->id) }}}">{{{ $post->title }}}</a></h3>
+            <p><a href="{{{ action('PostsController@show', $post->id) }}}">{{{ $post->title }}}</a></p>
             <p>{{{ $post->body }}}</p>
             @foreach($post->images as $image)
                 <img src="{{ "/img/" . $image->filename }}">
@@ -29,26 +30,21 @@
 
             {{ Form::close() }}
         </article>
-
     @endforeach
-    {{-- this is a comment in blade --}}
-    {{ $posts->appends(array('search' => $search))->links() }}
-
 </div>
-<div class="col-xs-4" id="sidebar" role="navigation">
-    {{ Form::open(array('action' => array('PostsController@index'), 'class' => 'form-horizontal', 'method' => 'GET')) }}
 
-    {{ Form::text('search', null, array('placeholder' => 'Search Posts')) }}
+<div class="col-xs-6" id="sidebar">
+    <div class="blog-header">
+        <h3 class="blog-title">Projects</h3>
+        <a href="http://www.protor.us"><h5 class="projects">Protor.us</h5></a>
+        <p class="project-description">Screencasts and tutorials that walk through solving real problems, what to do  when you don't know what to do next, and how to approach coding challenges. </p>
 
-    {{ Form::submit('Search') }}
-
-    {{ Form:: close() }}
-    <br>
-    <a href="{{{ action('PostsController@create') }}}"><button type="button" class="pink btn btn-primary btn-lg btn-block">Create New Post</button></a>
-
-    <div>
-        <br>
-       <img class="centered"src="/img/amorcito.jpg">
+    </div>
+    <div class="blog-header">
+        <h3 class="blog-title">Resources</h3>
+        <p class="projects">Tips and Tricks</p>
+        <p class="projects">Tools I recommend</p>
+        <p class="project-description">Recommended reading</p>
     </div>
 </div>
 
