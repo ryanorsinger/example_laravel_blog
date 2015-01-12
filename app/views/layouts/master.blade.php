@@ -4,6 +4,7 @@
     <title>@yield('title')</title>
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
+    @include('layouts.assets.analytics')
     @include('layouts.include_header')
     @yield('css')
     @yield('topscript')
@@ -26,8 +27,8 @@
 
 <div class="container">
 
-@yield('body')
-@yield('content')
+    @yield('body')
+    @yield('content')
 
 </div>
 @yield('bottomscript')
