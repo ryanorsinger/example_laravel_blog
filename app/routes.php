@@ -34,3 +34,7 @@ Route::resource('pages', 'GatheringsController');
 Route::resource('profiles', 'ProfilesController');
 
 Route::resource('images', 'ImagesController');
+
+Route::get('calculator', function() {
+    return View::make('challenges.calculator');
+});

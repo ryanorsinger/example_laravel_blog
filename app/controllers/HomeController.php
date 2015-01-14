@@ -31,3 +31,8 @@ class HomeController extends BaseController {
 	}
 
 }
+
+$mentors = DB::table('mentors')->join('users', function($join) {
+	            $join->on('users.id', '=', 'mentors.user_id');
+	        })
+	        ->get();

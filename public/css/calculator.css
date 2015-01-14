@@ -1,0 +1,32 @@
+.calculator {
+    border-style: solid;
+    border-width: 1px;
+    border-right-width: 2px;
+    height: 400px;
+    width: 400px;
+}
+
+#lcd {
+    background-color: #12F400;
+    border-style: solid;
+    border-top-width: 1px;
+    border-right-width: 2px;
+    border-left-width: 0px;
+    border-bottom-width: 1px;
+    height: 60px;
+    width: 399px;
+    text-align: right;
+    font-size: 3em;
+    padding-left: 1;
+}
+
+.keys {
+
+}
+
+
+.keys button{
+    height: 40%;
+    width: 20%;
+    font-size: 35px;
+}
