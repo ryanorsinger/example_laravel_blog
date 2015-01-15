@@ -1,0 +1,11 @@
+.pink {
+    background-color: #FF69B4;
+    border-color: #FF69B4;
+}
+
+.centered {
+    margin-left: 10px;
+    margin-right: 10px;
+    margin-top: 0;
+    margin-bottom: 0;
+}

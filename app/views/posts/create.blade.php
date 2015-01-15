@@ -5,7 +5,7 @@
 
 @section('content')
 
-    {{ Form::open(array('action' => 'PostsController@store', 'class' => 'form-horizontal')) }}
+    {{ Form::open(array('action' => 'PostsController@store', 'class' => 'form-horizontal', 'files' => true )) }}
 
         @include('posts.form')
 

@@ -8,7 +8,7 @@ class PostsController extends \BaseController
 	    parent::__construct();
 
 	    // run auth filter before all methods on this controller except index and show
-	    //$this->beforeFilter('auth', array('except' => array('index', 'show')));
+	    // $this->beforeFilter('auth', array('except' => array('index', 'show')));
 	}
 
 	/**
@@ -18,19 +18,18 @@ class PostsController extends \BaseController
 	 */
 	public function index()
 	{
+		$query = Post::with('user');
 
 		$search = Input::get('search');
-		$query = Post::orderBy('created_at', 'desc');
 
-		if (is_null($search)) {
-			$posts = $query->paginate(3);
-		} else {
-			$posts = $query->where('title', 'LIKE', "%{$search}%")
-						   ->orWhere('body', 'LIKE', "%{$search}%")
-						   ->paginate(3);
+		if (!is_null($search)) {
+			$query->where('title', 'LIKE', "%{$search}%")
+					->orWhere('body', 'LIKE', "%{$search}%");
 		}
 
-	 	return View::make('posts.index')->with('posts', $posts);
+		$posts = $query->get();
+
+	 	return View::make('posts.index')->with('posts', $posts)->with('search', $search);
 	}
 
 	/**
@@ -140,10 +139,6 @@ class PostsController extends \BaseController
 
 		$post->delete();
 
-		Log::info('Post deleted successfully');
-
-		Session::flash('successMessage', 'Post deleted successfully');
-
 		return Redirect::action('PostsController@index');
 	}
 
@@ -161,14 +156,29 @@ class PostsController extends \BaseController
 		//attempt validation
 	    if ($validator->fails()) {
         	return Redirect::back()->withInput()->withErrors($validator);
-	    } else {
-			$post->title = Input::get('title');
-			$post->body = Input::get('body');
-			$post->user_id = Auth::user()->id;
-			$post->save();
+	    }
 
-			return Redirect::action('PostsController@index');
-		}
+		$post->title = Input::get('title');
+		$post->body = Input::get('body');
+		// $post->user_id = Auth::user()->id;
+		$post->user_id = 1;
+		$post->save();
+
+		if (Input::hasFile('image')) {
+    		$destinationPath = public_path() . "/img/";
+			$filename = Input::file('image')->getClientOriginalName();
+
+			Input::file('image')->move($destinationPath, $filename);
+
+			$image = new Image();
+			$image->filename = $filename;
+			$image->path = public_path() . "/img/";
+			$image->post_id = $post->id;
+			$image->save();
+    	}
+
+		return Redirect::action('PostsController@index');
 	}
+
 
 }
