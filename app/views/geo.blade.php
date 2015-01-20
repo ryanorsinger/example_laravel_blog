@@ -9,6 +9,7 @@
 
     <div id="results"></div>
 
+<p>Put together a system that tracks millions of people's locations in near real-time.</p>
 
 </body>
 </html>
