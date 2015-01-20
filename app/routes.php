@@ -13,6 +13,10 @@
 
 Route::get('/', array('uses' => 'HomeController@showWelcome', 'as' => 'home'));
 
+Route::get('/geo', function() {
+    return View::make('geo');
+});
+
 Route::get('/resume', array('uses' => 'HomeController@showResume', 'as' => 'resume'));
 
 Route::get('/portfolio', array('uses' => 'HomeController@showPortfolio', 'as' => 'portfolio'));
