@@ -11,7 +11,13 @@
 |
 */
 
-Route::get('/', array('uses' => 'HomeController@showWelcome', 'as' => 'home'));
+Route::get('/nativeapp/first-time-setup', function(){
+    return View::make('pages.first-time-setup');
+});
+
+Route::get('/maps', function(){
+    return View::make('pages.google_maps_api');
+});
 
 Route::get('/geo', function() {
     return View::make('geo');

@@ -74,6 +74,8 @@ class PostsController extends \BaseController
 	{
 		$post = Post::find($id);
 
+		$user = User::with('location', 'location.images')->find($id);
+
 		if (!$post) {
 
 			Log::error('Post was not found');
